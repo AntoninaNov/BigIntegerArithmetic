@@ -132,7 +132,7 @@ public class BigInteger
         // Convert _digitArray to string in forward order and return it
         StringBuilder sb = new StringBuilder(_digitArray.Length);
 
-        for (int i = 0; i < _digitArray.Length; i++)
+        for (int i = _digitArray.Length - 1; i >= 0; i--)
         {
             sb.Append(_digitArray[i]);
         }
