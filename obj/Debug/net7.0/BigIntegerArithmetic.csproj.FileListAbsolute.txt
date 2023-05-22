@@ -1,0 +1,15 @@
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/bin/Debug/net7.0/BigIntegerArithmetic
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/bin/Debug/net7.0/BigIntegerArithmetic.deps.json
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/bin/Debug/net7.0/BigIntegerArithmetic.runtimeconfig.json
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/bin/Debug/net7.0/BigIntegerArithmetic.dll
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/bin/Debug/net7.0/BigIntegerArithmetic.pdb
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/BigIntegerArithmetic.csproj.AssemblyReference.cache
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/BigIntegerArithmetic.GeneratedMSBuildEditorConfig.editorconfig
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/BigIntegerArithmetic.AssemblyInfoInputs.cache
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/BigIntegerArithmetic.AssemblyInfo.cs
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/BigIntegerArithmetic.csproj.CoreCompileInputs.cache
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/BigIntegerArithmetic.dll
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/refint/BigIntegerArithmetic.dll
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/BigIntegerArithmetic.pdb
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/BigIntegerArithmetic.genruntimeconfig.cache
+/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/Debug/net7.0/ref/BigIntegerArithmetic.dll
