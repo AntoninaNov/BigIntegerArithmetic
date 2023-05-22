@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj": {}
+    "/Users/vladshcherbyna/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj": {}
   },
   "projects": {
-    "/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj": {
+    "/Users/vladshcherbyna/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj",
+        "projectUniqueName": "/Users/vladshcherbyna/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj",
         "projectName": "BigIntegerArithmetic",
-        "projectPath": "/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj",
-        "packagesPath": "/Users/antoninanovak/.nuget/packages/",
-        "outputPath": "/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/obj/",
+        "projectPath": "/Users/vladshcherbyna/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj",
+        "packagesPath": "/Users/vladshcherbyna/.nuget/packages/",
+        "outputPath": "/Users/vladshcherbyna/RiderProjects/BigIntegerArithmetic/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/antoninanovak/.nuget/NuGet/NuGet.Config"
+          "/Users/vladshcherbyna/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/vladshcherbyna/.dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "txFAfNQJo4DfJ6X4KZ3XqXHADHAdzgAQQVMtl1NCNAympoc67nS0wHGxx0wda0S2vZNH2gjHHIE6IH9Tcmuerg==",
+  "dgSpecHash": "MRPy1YNVS/3L1nXDU+O/t9AIhlr5F/559m+xLNgN1IEYhsvn4+Z49i1Xizt9ob4YEe+PbKEaIkpBBVkPww+Bmw==",
   "success": true,
-  "projectFilePath": "/Users/antoninanovak/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj",
+  "projectFilePath": "/Users/vladshcherbyna/RiderProjects/BigIntegerArithmetic/BigIntegerArithmetic.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
