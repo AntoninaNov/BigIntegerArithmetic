@@ -5,23 +5,25 @@ public class BigInteger
 {
     private bool _isNegativeNumber;
     private int[] _digitArray;
-    
     public BigInteger(string numberAsString)
     {
-        // Convert string representation to char array and reverse it
+        if (numberAsString.StartsWith("-"))
+        {
+            _isNegativeNumber = true;
+            numberAsString = numberAsString.Substring(1); 
+        }
+            
         char[] charArray = numberAsString.ToCharArray();
         Array.Reverse(charArray);
-
-        // Initialize _digitArray with the same length as the string
+            
         _digitArray = new int[charArray.Length];
-
-        // Convert each character to an integer and store it in _digitArray
+            
         for (int i = 0; i < charArray.Length; i++)
         {
             _digitArray[i] = int.Parse(charArray[i].ToString());
         }
     }
-
+    
     /*public BigInteger(string numericString)
     {
         _reversedDigits = new int[numericString.Length];
@@ -52,20 +54,55 @@ public class BigInteger
             chars[_reversedDigits.Length - index - 1] = (char)('0' + _reversedDigits[index]);
         }
         return new string(chars);
-    }*/
+    }*/ 
     
     public static BigInteger operator +(BigInteger number1, BigInteger number2)
     {
-        // Determine the longer and shorter number
-        BigInteger longerNumber = number1;
-        BigInteger shorterNumber = number2;
-
-        if (number2._digitArray.Length > number1._digitArray.Length)
+        if (number1._isNegativeNumber && !number2._isNegativeNumber)
         {
-            longerNumber = number2;
-            shorterNumber = number1;
+            return SubtractAbsoluteValues(number2, number1.GetAbsoluteValue());
         }
+        else if (!number1._isNegativeNumber && number2._isNegativeNumber)
+        {
+            return SubtractAbsoluteValues(number1, number2.GetAbsoluteValue());
+        }
+        else if (number1._isNegativeNumber && number2._isNegativeNumber)
+        {
+            BigInteger sum = AddAbsoluteValues(number1.GetAbsoluteValue(), number2.GetAbsoluteValue());
+            sum._isNegativeNumber = true;
+            return sum;
+        }
+        else
+        {
+            return AddAbsoluteValues(number1, number2);
+        }
+    }
 
+    
+    public static BigInteger operator -(BigInteger number1, BigInteger number2)
+    {
+        if (number1._isNegativeNumber && !number2._isNegativeNumber)
+        {
+            BigInteger difference = AddAbsoluteValues(number1.GetAbsoluteValue(), number2);
+            difference._isNegativeNumber = true;
+            return difference;
+        }
+        else if (!number1._isNegativeNumber && number2._isNegativeNumber)
+        {
+            return AddAbsoluteValues(number1, number2.GetAbsoluteValue());
+        }
+        else if (number1._isNegativeNumber && number2._isNegativeNumber)
+        {
+            return SubtractAbsoluteValues(number1.GetAbsoluteValue(), number2.GetAbsoluteValue());
+        }
+        else
+        {
+            return SubtractAbsoluteValues(number1, number2);
+        }
+    }
+    
+        private static BigInteger AddAbsoluteValues(BigInteger number1, BigInteger number2)
+    {
         int maxLength = Math.Max(number1._digitArray.Length, number2._digitArray.Length);
         int minLength = Math.Min(number1._digitArray.Length, number2._digitArray.Length);
 
@@ -76,8 +113,8 @@ public class BigInteger
 
         for (int i = 0; i < maxLength; i++)
         {
-            int digit1 = i < longerNumber._digitArray.Length ? longerNumber._digitArray[i] : 0;
-            int digit2 = i < shorterNumber._digitArray.Length ? shorterNumber._digitArray[i] : 0;
+            int digit1 = i < number1._digitArray.Length ? number1._digitArray[i] : 0;
+            int digit2 = i < number2._digitArray.Length ? number2._digitArray[i] : 0;
 
             sum = carry + digit1 + digit2;
             result[i] = sum % 10;
@@ -94,8 +131,8 @@ public class BigInteger
 
         return sumNumber;
     }
-    
-    public static BigInteger operator -(BigInteger number1, BigInteger number2)
+
+    private static BigInteger SubtractAbsoluteValues(BigInteger number1, BigInteger number2)
     {
         int maxLength = Math.Max(number1._digitArray.Length, number2._digitArray.Length);
         int[] result = new int[maxLength];
@@ -106,7 +143,7 @@ public class BigInteger
             int digit1 = i < number1._digitArray.Length ? number1._digitArray[i] : 0;
             int digit2 = i < number2._digitArray.Length ? number2._digitArray[i] : 0;
 
-            int difference = digit1 - borrow - digit2;
+            int difference = digit1 - digit2 - borrow;
 
             if (difference < 0)
             {
@@ -126,11 +163,23 @@ public class BigInteger
 
         return differenceNumber;
     }
+
+    private BigInteger GetAbsoluteValue()
+    {
+        BigInteger absoluteValue = new BigInteger("");
+        absoluteValue._digitArray = _digitArray;
+        return absoluteValue;
+    }
     
     public override string ToString()
     {
         // Convert _digitArray to string in forward order and return it
-        StringBuilder sb = new StringBuilder(_digitArray.Length);
+        StringBuilder sb = new StringBuilder(_digitArray.Length + (_isNegativeNumber ? 1 : 0));
+
+        if (_isNegativeNumber)
+        {
+            sb.Append("-");
+        }
 
         for (int i = _digitArray.Length - 1; i >= 0; i--)
         {
@@ -196,9 +245,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        //var x = new BigInteger("1313234242425");
-        //Console.WriteLine(x);
-        
         // Checking for the string "123434"
         BigInteger number1 = new BigInteger("123434");
         Console.WriteLine(number1.ToString());
@@ -224,7 +270,28 @@ class Program
 
         Console.WriteLine("Sum: " + sum);
         Console.WriteLine("Difference: " + difference);
+
+        // Addition check with numbers of different signs
+        BigInteger number7 = new BigInteger("456");
+        BigInteger number8 = new BigInteger("-98");
+
+        sum = number7 + number8;
+        difference = number7 - number8;
+
+        Console.WriteLine("Sum: " + sum);
+        Console.WriteLine("Difference: " + difference);
+
+        // Addition check with two negative numbers
+        BigInteger number9 = new BigInteger("-456");
+        BigInteger number10 = new BigInteger("-98");
+
+        sum = number9 + number10;
+        difference = number9 - number10;
+
+        Console.WriteLine("Sum: " + sum);
+        Console.WriteLine("Difference: " + difference);
     }
+}
         
         /*Console.WriteLine("Enter the first number:");
         string firstNumber = Console.ReadLine();
@@ -249,4 +316,4 @@ class Program
         Console.WriteLine(resultMultiply);
         */
     //}
-}
+
