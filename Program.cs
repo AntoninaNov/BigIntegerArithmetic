@@ -111,6 +111,12 @@ public class BigInteger
                 return difference;
             }
         }
+        else if (number1._isNegativeNumber && number2._isNegativeNumber && CompareAbsoluteValues(number1, number2) < 0)
+        {
+            BigInteger difference = SubtractAbsoluteValues(number1.GetAbsoluteValue(), number2.GetAbsoluteValue());
+            difference._isNegativeNumber = true;
+            return difference;
+        }
         else
         {
             // Compare the absolute values to determine the sign of the result
@@ -136,11 +142,11 @@ public class BigInteger
     {
         if (number1._digitArray.Length > number2._digitArray.Length)
         {
-            return 1;
+            return number1._isNegativeNumber ? -1 : 1;
         }
         else if (number1._digitArray.Length < number2._digitArray.Length)
         {
-            return -1;
+            return number2._isNegativeNumber ? 1 : -1;
         }
         else
         {
@@ -148,11 +154,11 @@ public class BigInteger
             {
                 if (number1._digitArray[i] > number2._digitArray[i])
                 {
-                    return 1;
+                    return number1._isNegativeNumber ? -1 : 1;
                 }
                 else if (number1._digitArray[i] < number2._digitArray[i])
                 {
-                    return -1;
+                    return number2._isNegativeNumber ? 1 : -1;
                 }
             }
             return 0;
@@ -197,28 +203,55 @@ public class BigInteger
         int[] result = new int[maxLength];
         int borrow = 0;
 
+        bool number1IsSmaller = CompareAbsoluteValues(number1, number2) < 0;
+
         for (int i = 0; i < maxLength; i++)
         {
             int digit1 = i < number1._digitArray.Length ? number1._digitArray[i] : 0;
             int digit2 = i < number2._digitArray.Length ? number2._digitArray[i] : 0;
 
-            int difference = digit1 - digit2 - borrow;
-
-            if (difference < 0)
+            int difference;
+            if (number1IsSmaller)
             {
-                difference += 10;
-                borrow = 1;
+                difference = digit2 - digit1 - borrow;
+
+                if (difference < 0)
+                {
+                    difference += 10;
+                    borrow = 1;
+                }
+                else
+                {
+                    borrow = 0;
+                }
             }
             else
             {
-                borrow = 0;
+                difference = digit1 - digit2 - borrow;
+
+                if (difference < 0)
+                {
+                    difference += 10;
+                    borrow = 1;
+                }
+                else
+                {
+                    borrow = 0;
+                }
             }
 
             result[i] = difference;
         }
 
+        // Remove leading zeros
+        while (result.Length > 1 && result[result.Length - 1] == 0)
+        {
+            Array.Resize(ref result, result.Length - 1);
+        }
+
         BigInteger differenceNumber = new BigInteger("");
         differenceNumber._digitArray = result;
+        differenceNumber._isNegativeNumber = number1IsSmaller ? !number1._isNegativeNumber : number1._isNegativeNumber;
 
         return differenceNumber;
     }
